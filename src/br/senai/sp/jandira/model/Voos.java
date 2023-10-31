@@ -1,8 +1,6 @@
 package br.senai.sp.jandira.model;
 
-import java.awt.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,37 +15,6 @@ public class Voos {
 
 
 
-    List<Voos> voosList = new ArrayList<>();
-
-    public void addVeiculo(Voos voos) {
-        voosList.add(voos);
-    }
-
-    public void listarVeiculos() {
-        for (Voos voos : voosList) {
-            System.out.println("Numero do Voo: " + voos.getNumVoo());
-            System.out.println("Origem: " + voos.getOrigem());
-            System.out.println("Destino: " + voos.getDestino());
-            System.out.println("Data de Partida: " + voos.getDatapartida());
-            System.out.println("Hora de Partida: " + voos.getHrpartida());
-            System.out.println("Limite de Passageiros: " + voos.getLmtPassageiros());
-            System.out.println("Companhia: " + voos.getCompanhia() + "\n");
-        }
-    }
-
-    public boolean procurarVoo(String procurarVoo){
-        for (Voos voos : voosList) {
-            if (voos.destino.equals(procurarVoo)){
-                return true;
-
-            }
-        }
-
-        return false;
-    }
-
-
-
     public Voos (int numVoo, String origem, String destino, LocalDate datapartida, LocalTime hrpartida, int lmtPassageiros,String companhia){
 
         this.numVoo = numVoo;
@@ -57,10 +24,6 @@ public class Voos {
         this.hrpartida = hrpartida;
         this.lmtPassageiros = lmtPassageiros;
         this.companhia = companhia;
-
-    }
-
-    public Voos() {
 
     }
 

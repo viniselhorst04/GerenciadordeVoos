@@ -2,6 +2,7 @@ package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,7 +12,7 @@ public class Menu {
         GerarNumVoo gerarNumVoo = new GerarNumVoo();
         GerarTime gerarTime = new GerarTime();
         Scanner scanner = new Scanner(System.in);
-        Voos listVoo = new Voos();
+        Listas vooList = new Listas();
 
         boolean continuar = true;
 
@@ -42,6 +43,8 @@ public class Menu {
                         case 1:
                             Voos gol = new Gol(numVoo,"São Paulo","Fortaleza",dataPartida,horaPartida,200,"");
                             gol.setCompanhia("Gol");
+                            vooList.addVoos(gol);
+                            System.out.println(vooList.voosList.size());
 
                             System.out.println("Programando Voo...");
                             try {
@@ -59,6 +62,8 @@ public class Menu {
 
                             Voos latam = new LATAM(numVoo,"São Paulo","Florianópolis",dataPartida,horaPartida,150,"");
                             latam.setCompanhia("LATAM");
+                            vooList.addVoos(latam);
+                            System.out.println(vooList.voosList.size());
 
                             System.out.println("Programando Voo...");
                             try {
@@ -73,11 +78,10 @@ public class Menu {
                             break;
 
                         case 3:
-                            Voos azul = new Azul(numVoo,"São Paulo","Miami - EUA",dataPartida,horaPartida,300,"");
+                            Voos azul = new Azul(numVoo,"São Paulo","Miami",dataPartida,horaPartida,300,"");
                             azul.setCompanhia("Azul");
-                            Voos objVoo = new Voos();
-                            listVoo.addVeiculo(objVoo);
-                            System.out.println(listVoo.voosList.size());
+                            vooList.addVoos(azul);
+                            System.out.println(vooList.voosList.size());
 
                             System.out.println("Programando Voo...");
                             try {
@@ -117,13 +121,27 @@ public class Menu {
 
                     System.out.println("Digite o Destino do Voo!: ");
                     String vooPesquisado = scanner.nextLine();
-                    boolean validaVoo = false;
+                    List<Voos> validaVoo = null;
 
                     if (vooPesquisado != null && vooPesquisado != ""){
-                        validaVoo = listVoo.procurarVoo(vooPesquisado);
+                        validaVoo = vooList.procurarVoo(vooPesquisado);
                     }
-                    if (validaVoo){
-                        System.out.println("O " + vooPesquisado + " está disponivel!");
+                    if (validaVoo != null){
+
+                        for (Voos voosEncontrados: validaVoo) {
+                            System.out.println("O voo para " + vooPesquisado + " está disponivel" );
+                            System.out.println(" ------------ INFORMAÇÕES DO VOO -------------- " );
+                            System.out.println("Numero do Voo: " + voosEncontrados.getNumVoo());
+                            System.out.println("Origem: " + voosEncontrados.getOrigem());
+                            System.out.println("Destino: " + voosEncontrados.getDestino());
+                            System.out.println("Data de Partida: " + voosEncontrados.getDatapartida());
+                            System.out.println("Hora de Partida: " + voosEncontrados.getHrpartida());
+                            System.out.println("Limite de Passageiros: " + voosEncontrados.getLmtPassageiros());
+                            System.out.println("Companhia: " + voosEncontrados.getCompanhia() + "\n");
+
+
+                        }
+                        System.out.println("\n");
 
                     }else {
                         System.out.println("O " + vooPesquisado + " não está disponivel!");
