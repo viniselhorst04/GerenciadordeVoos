@@ -23,6 +23,8 @@ public class Menu {
             System.out.println("2- Consultar Voo");
             System.out.println("3- Sair");
 
+            System.out.println("Escolha a opção desejada:");
+
             int escolhaUsuario = scanner.nextInt();
             scanner.nextLine();
 
@@ -119,41 +121,103 @@ public class Menu {
 
                 case 2:
 
-                    System.out.println("Digite o Destino do Voo!: ");
-                    String vooPesquisado = scanner.nextLine();
-                    List<Voos> validaVoo = null;
+                    System.out.println(" Como deseja pesquisar seu voo? [ 1- Numero do Voo | 2- Destino | 3- Origem | 4- Data de Partida");
+                    int escolhaconsulta = scanner.nextInt();
+                    scanner.nextLine();
 
-                    if (vooPesquisado != null && vooPesquisado != ""){
-                        validaVoo = vooList.procurarVoo(vooPesquisado);
+                    switch (escolhaconsulta){
+
+                        case 1:
+
+                            System.out.println("Digite o Numero do Voo!: ");
+                            int vooPesquisadoN = scanner.nextInt();
+                            List<Voos> validaVoo = null;
+
+                            if (vooPesquisadoN !=0){
+                                validaVoo = vooList.procurarVooNumero(vooPesquisadoN);
+                            }
+                            if (validaVoo != null){
+
+                                for (Voos voosEncontrados: validaVoo) {
+                                    System.out.println("O voo " + voosEncontrados.getNumVoo() + " está disponivel\n" );
+                                    System.out.println(" ------------ INFORMAÇÕES DO VOO -------------- " );
+                                    System.out.println("Numero do Voo: " + voosEncontrados.getNumVoo());
+                                    System.out.println("Origem: " + voosEncontrados.getOrigem());
+                                    System.out.println("Destino: " + voosEncontrados.getDestino());
+                                    System.out.println("Data de Partida: " + voosEncontrados.getDatapartida());
+                                    System.out.println("Hora de Partida: " + voosEncontrados.getHrpartida());
+                                    System.out.println("Limite de Passageiros: " + voosEncontrados.getLmtPassageiros());
+                                    System.out.println("Companhia: " + voosEncontrados.getCompanhia() + "\n");
+                                }
+
+                            }else {
+                                System.out.println("O " + vooPesquisadoN + " não está disponivel!");
+                            }
+                            break;
+
+                        case 2:
+
+                            System.out.println("Digite o Destino do Voo!: ");
+                            String vooPesquisado = scanner.nextLine();
+                            List<Voos> validaVooD = null;
+
+                            if (vooPesquisado != null && vooPesquisado != ""){
+                                validaVooD = vooList.procurarVooDestino(vooPesquisado);
+                            }
+                            if (validaVooD != null){
+
+                                for (Voos voosEncontrados: validaVooD) {
+                                    System.out.println("O voo para " + vooPesquisado + " está disponivel" );
+                                    System.out.println(" ------------ INFORMAÇÕES DO VOO -------------- " );
+                                    System.out.println("Numero do Voo: " + voosEncontrados.getNumVoo());
+                                    System.out.println("Origem: " + voosEncontrados.getOrigem());
+                                    System.out.println("Destino: " + voosEncontrados.getDestino());
+                                    System.out.println("Data de Partida: " + voosEncontrados.getDatapartida());
+                                    System.out.println("Hora de Partida: " + voosEncontrados.getHrpartida());
+                                    System.out.println("Limite de Passageiros: " + voosEncontrados.getLmtPassageiros());
+                                    System.out.println("Companhia: " + voosEncontrados.getCompanhia() + "\n");
+
+                                }
+                            }else {
+                                System.out.println("O " + vooPesquisado + " não está disponivel!");
+                            }
+                            break;
+
+                        case 3:
+                            System.out.println("Digite o Origem do Voo!: ");
+                            String OrigemPesquisado = scanner.nextLine();
+                            List<Voos> validaVooOrigem = null;
+
+                            if (OrigemPesquisado != null && OrigemPesquisado != ""){
+                                validaVooOrigem = vooList.procurarVooOrigem(OrigemPesquisado);
+                            }
+                            if (validaVooOrigem != null){
+
+                                for (Voos voosEncontrados: validaVooOrigem) {
+                                    System.out.println("O voo para " + voosEncontrados.getOrigem() + " está disponivel" );
+                                    System.out.println(" ------------ INFORMAÇÕES DO VOO -------------- " );
+                                    System.out.println("Numero do Voo: " + voosEncontrados.getNumVoo());
+                                    System.out.println("Origem: " + voosEncontrados.getOrigem());
+                                    System.out.println("Destino: " + voosEncontrados.getDestino());
+                                    System.out.println("Data de Partida: " + voosEncontrados.getDatapartida());
+                                    System.out.println("Hora de Partida: " + voosEncontrados.getHrpartida());
+                                    System.out.println("Limite de Passageiros: " + voosEncontrados.getLmtPassageiros());
+                                    System.out.println("Companhia: " + voosEncontrados.getCompanhia() + "\n");
+
+                                }
+                            }else {
+                                System.out.println("O " + OrigemPesquisado + " não está disponivel!");
+                            }
+                            break;
+
                     }
-                    if (validaVoo != null){
 
-                        for (Voos voosEncontrados: validaVoo) {
-                            System.out.println("O voo para " + vooPesquisado + " está disponivel" );
-                            System.out.println(" ------------ INFORMAÇÕES DO VOO -------------- " );
-                            System.out.println("Numero do Voo: " + voosEncontrados.getNumVoo());
-                            System.out.println("Origem: " + voosEncontrados.getOrigem());
-                            System.out.println("Destino: " + voosEncontrados.getDestino());
-                            System.out.println("Data de Partida: " + voosEncontrados.getDatapartida());
-                            System.out.println("Hora de Partida: " + voosEncontrados.getHrpartida());
-                            System.out.println("Limite de Passageiros: " + voosEncontrados.getLmtPassageiros());
-                            System.out.println("Companhia: " + voosEncontrados.getCompanhia() + "\n");
-
-
-                        }
-                        System.out.println("\n");
-
-                    }else {
-                        System.out.println("O " + vooPesquisado + " não está disponivel!");
-                    }
                     break;
-
 
                 case 3:
-
                     continuar = false;
-
                     break;
+
 
             }
 

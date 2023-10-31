@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Listas {
         }
     }
     public List<Voos> voosEncontrados = new ArrayList<>();
-    public List<Voos> procurarVoo(String procurarVoo){
+    public List<Voos> procurarVooDestino(String procurarVoo){
         for (Voos voos : voosList) {
             String destino = voos.getDestino();
             if (destino.equalsIgnoreCase(procurarVoo)){
@@ -32,5 +33,26 @@ public class Listas {
         }
         return voosEncontrados;
     }
+
+    public List<Voos> procurarVooNumero(int procurarVoo){
+        for (Voos voos : voosList) {
+            int destino = voos.getNumVoo();
+            if (destino == (procurarVoo)){
+                voosEncontrados.add(voos);
+            }
+        }
+        return voosEncontrados;
+    }
+
+    public List<Voos> procurarVooOrigem(String procurarVoo){
+        for (Voos voos : voosList) {
+            String origem = voos.getOrigem();
+            if (origem.equalsIgnoreCase(procurarVoo)){
+                voosEncontrados.add(voos);
+            }
+        }
+        return voosEncontrados;
+    }
+
 
 }
