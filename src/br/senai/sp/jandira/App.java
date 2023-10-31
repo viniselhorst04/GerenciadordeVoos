@@ -2,6 +2,7 @@ package br.senai.sp.jandira;
 
 import br.senai.sp.jandira.model.GerarTime;
 import br.senai.sp.jandira.model.Gol;
+import br.senai.sp.jandira.model.Menu;
 import br.senai.sp.jandira.model.Voos;
 
 import java.time.LocalDate;
@@ -12,14 +13,10 @@ public class App {
 
     public static void main(String[] args) {
 
-        GerarTime gerarTime = new GerarTime();
-
-        LocalDate dataPartida = gerarTime.gerarData();
-        LocalTime horaPartida = gerarTime.gerarHora();
-
-        Voos gol = new Gol(1,"São Paulo","Fortaleza",dataPartida,horaPartida,200,"GOL");
-        System.out.println(gol.getNumVoo());
-
+        Menu menu = new Menu();
+        menu.executarMenu();
     }
+
+
 
 }
